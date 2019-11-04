@@ -14,7 +14,7 @@ public:
         this->right = nullptr;
     }
 
-     BST *bst_search(BST *root, int v){
+    BST *bst_search(BST *root, int v){
         if(root == nullptr){
             return nullptr;
         } else if (v < root->value){
@@ -28,11 +28,11 @@ public:
 
     BST *bst_insert(BST *root, int v){ //Erro na hora de criar um objeto novo
         if (root == nullptr){
-            BST n; //Ele esta criando um objeto no mesmo espaco de memoria do anterior, logo tambem atualiza o valor do objeto anterior
-            n.value = v;
-            n.left = nullptr;
-            n.right = nullptr;
-            return &n;
+            BST *n = new BST(); //Ele esta criando um objeto no mesmo espaco de memoria do anterior, logo tambem atualiza o valor do objeto anterior
+            n->value = v;
+            n->left = nullptr;
+            n->right = nullptr;
+            return n;
         } else if (v < root->value){
             root->left = bst_insert(root->left, v);
             return root;
@@ -87,12 +87,15 @@ int main() {
     BST *root = nullptr;
     root = root->bst_insert(root, 3);
     root = root->bst_insert(root, 2);
-    root = root->bst_insert(root, 1);
     root = root->bst_insert(root, 5);
     root = root->bst_insert(root, 6);
     root = root->bst_insert(root, 7);
 
-    //Erro no bst_insert
+    root = root->bst_insert(root, 4);
+
+    root = root->bst_delete(root, 5);
+
+
 
     return 0;
 }
